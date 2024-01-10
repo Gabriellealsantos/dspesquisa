@@ -16,8 +16,7 @@ import java.util.List;
 public interface RecordRepository extends JpaRepository<Record, Long> {
 
     @Query("SELECT obj FROM Record obj WHERE " +
-            "(:min IS NULL OR obj.moment >= :min) AND " +
-            "(:max IS NULL OR obj.moment <= :max) ")
-    Page<Record> findByMoments(@Param("min") Instant min, @Param("max") Instant max, Pageable pageRequest);
-
+            "(coalesce(:min, null) IS NULL OR obj.moment >= :min) AND " +
+            "(coalesce(:max, null) IS NULL OR obj.moment <= :max) ")
+    Page<Record> findByMoments(Instant min, Instant max, Pageable pageRequest);
 }
