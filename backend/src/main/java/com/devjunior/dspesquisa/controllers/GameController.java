@@ -1,4 +1,4 @@
-package com.devjunior.dspesquisa.resources;
+package com.devjunior.dspesquisa.controllers;
 
 import com.devjunior.dspesquisa.dto.GameDTO;
 import com.devjunior.dspesquisa.services.GameService;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/games")
-public class GameResource {
+public class GameController {
     @Autowired
     private GameService service;
 
@@ -21,7 +21,6 @@ public class GameResource {
         List<GameDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
-
 
 
 }
